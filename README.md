@@ -12,7 +12,7 @@ GoPerfWatch is a CLI-based system monitoring utility written in Go for **Linux**
 
 ## Dependencies
 
-Before attempting install GoPerfWatch, ensure that the following dependencies are present on your system:
+Before attempting install GoPerfWatch, ensure that the following packages are present on your system:
 
 ### Golang
 
