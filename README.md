@@ -107,3 +107,7 @@ go run main.go
 * Allow for arguments when executing to enable different display modes
 * Quit program only upon receiving specific input (rather than any)
 * Possibly phase out some use of lm-sensors where more universal implementations may be possible
+
+## License
+
+GoPerfWatch is licensed under the MIT License. Refer to the LICENSE file for additional details.
