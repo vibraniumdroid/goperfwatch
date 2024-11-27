@@ -6,7 +6,7 @@ GoPerfWatch is a CLI-based system monitoring utility written in Go for **Linux**
 - **CPU Monitoring**: Displays clock speed, temperature, and usage.
 - **GPU Monitoring**: Tracks VRAM usage and temperature.
 - **Memory Monitoring**: Shows memory usage in GB and / total on a usage bar.
-- **Real-time Updates**: Data is refreshed at configurable intervals (500ms default).
+- **Real-time Updates**: Data is refreshed at configurable intervals (must modify source code).
 
 ![image](https://github.com/user-attachments/assets/9e4b9658-94b4-4333-911c-673c17f50616)
 
