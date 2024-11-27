@@ -16,40 +16,40 @@ type CPUSpeed struct {
 	Max int64
 }
 
-/// GetCPUClockSpeeds retrieves the average and maximum CPU clock speeds
+// GetCPUClockSpeeds retrieves the average and maximum CPU clock speeds
 func GetCPUClockSpeeds() (*CPUSpeed, error) {
-    paths, err := filepath.Glob("/sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq")
-    if err != nil || len(paths) == 0 {
-        return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 if no data
-    }
+	paths, err := filepath.Glob("/sys/devices/system/cpu/cpu*/cpufreq/scaling_cur_freq")
+	if err != nil || len(paths) == 0 {
+		return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 if no data
+	}
 
-    var totalFreq, maxFreq int64
-    coreCount := len(paths)
+	var totalFreq, maxFreq int64
+	coreCount := len(paths)
 
-    for _, path := range paths {
-        data, err := ioutil.ReadFile(path)
-        if err != nil {
-            return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
-        }
+	for _, path := range paths {
+		data, err := ioutil.ReadFile(path)
+		if err != nil {
+			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
+		}
 
-        freqKHz, err := strconv.ParseInt(strings.TrimSpace(string(data)), 10, 64)
-        if err != nil {
-            return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
-        }
+		freqKHz, err := strconv.ParseInt(strings.TrimSpace(string(data)), 10, 64)
+		if err != nil {
+			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
+		}
 
-        totalFreq += freqKHz
-        if freqKHz > maxFreq {
-            maxFreq = freqKHz
-        }
-    }
+		totalFreq += freqKHz
+		if freqKHz > maxFreq {
+			maxFreq = freqKHz
+		}
+	}
 
-    avgFreq := totalFreq / int64(coreCount) / 1000 // in MHz
-    maxFreqMHz := maxFreq / 1000                   // in MHz
+	avgFreq := totalFreq / int64(coreCount) / 1000 // in MHz
+	maxFreqMHz := maxFreq / 1000                   // in MHz
 
-    return &CPUSpeed{
-        Avg: avgFreq,
-        Max: maxFreqMHz,
-    }, nil
+	return &CPUSpeed{
+		Avg: avgFreq,
+		Max: maxFreqMHz,
+	}, nil
 }
 
 // GetCPUTemperature retrieves the CPU temperature
