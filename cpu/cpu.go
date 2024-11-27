@@ -43,8 +43,8 @@ func GetCPUClockSpeeds() (*CPUSpeed, error) {
 		}
 	}
 
-	avgFreq := totalFreq / int64(coreCount) / 1000 // in MHz
-	maxFreqMHz := maxFreq / 1000                   // in MHz
+	avgFreq := totalFreq / int64(coreCount) / 1000	// in MHz
+	maxFreqMHz := maxFreq / 1000			// in MHz
 
 	return &CPUSpeed{
 		Avg: avgFreq,
