@@ -102,7 +102,7 @@ func main() {
 					usageGauge.Percent = cpuUsage.Percent
 					usageGauge.Label = fmt.Sprintf("%d%%", cpuUsage.Percent)
 				} else {
-					usageGauge.Percent = 0
+					usageGauge.Percent = -1
 					usageGauge.Label = "CPU Usage: N/A"
 				}
 
@@ -113,7 +113,7 @@ func main() {
 					memoryGauge.Percent = memStats.Percent
 					memoryGauge.Label = fmt.Sprintf("%.1f GB / %.1f GB", memStats.UsedGB, memStats.TotalGB)
 				} else {
-					memoryGauge.Percent = 0
+					memoryGauge.Percent = -1
 					memoryGauge.Label = "Memory Usage: N/A"
 				}
 
@@ -124,7 +124,7 @@ func main() {
 					vramGauge.Percent = int(float64(vramStats.UsedMB) / float64(vramStats.TotalMB) * 100)
 					vramGauge.Label = fmt.Sprintf("%d MB / %d MB", vramStats.UsedMB, vramStats.TotalMB)
 				} else {
-					vramGauge.Percent = 0
+					vramGauge.Percent = -1
 					vramGauge.Label = "GPU VRAM Usage: N/A"
 				}
 
@@ -142,13 +142,13 @@ func main() {
 				if clockSpeedWidget.Text != "CPU Clock Speed: N/A" {
 					widgetsToRender = append(widgetsToRender, clockSpeedWidget)
 				}
-				if usageGauge.Percent != 0 {
+				if usageGauge.Percent != -1 {
 					widgetsToRender = append(widgetsToRender, usageGauge)
 				}
-				if memoryGauge.Percent != 0 {
+				if memoryGauge.Percent != -1 {
 					widgetsToRender = append(widgetsToRender, memoryGauge)
 				}
-				if vramGauge.Percent != 0 {
+				if vramGauge.Percent != -1 {
 					widgetsToRender = append(widgetsToRender, vramGauge)
 				}
 				if gpuTempWidget.Text != "GPU Temperature: N/A" {
@@ -161,7 +161,7 @@ func main() {
 		}
 	}()
 
-	// Main loop to handle keyboard input
+	// Main loop to handle input
 	for {
 		// Poll for keyboard input
 		if input, err := reader.ReadByte(); err == nil {
