@@ -81,6 +81,7 @@ cd goperfwatch
 ```bash
 go mod init goperfwatch
 go get github.com/gizak/termui/v3
+go mod tidy
 ```
 
 ### Build or run directly
