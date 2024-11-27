@@ -8,7 +8,7 @@ import (
 	"time"
 )
 
-// CPUUsage holds the current CPU usage percentage
+// CPUUsage struct to hold current CPU usage percentage
 type CPUUsage struct {
 	Percent int
 }
@@ -51,22 +51,22 @@ func readCPUTimes() (idle, total int64, err error) {
 
 // CalculateCPUUsage calculates the CPU usage over a short interval
 func CalculateCPUUsage() (*CPUUsage, error) {
-    idle1, total1, err := readCPUTimes()
-    if err != nil {
-        return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
-    }
+	idle1, total1, err := readCPUTimes()
+	if err != nil {
+		return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
+	}
 
-    time.Sleep(500 * time.Millisecond)
+	time.Sleep(500 * time.Millisecond)
 
-    idle2, total2, err := readCPUTimes()
-    if err != nil {
-        return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
-    }
+	idle2, total2, err := readCPUTimes()
+	if err != nil {
+		return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
+	}
 
-    idleDelta := idle2 - idle1
-    totalDelta := total2 - total1
+	idleDelta := idle2 - idle1
+	totalDelta := total2 - total1
 
-    usagePercent := 100 * (totalDelta - idleDelta) / totalDelta
+	usagePercent := 100 * (totalDelta - idleDelta) / totalDelta
 
-    return &CPUUsage{Percent: int(usagePercent)}, nil
+	return &CPUUsage{Percent: int(usagePercent)}, nil
 }
