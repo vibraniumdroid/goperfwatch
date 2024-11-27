@@ -12,28 +12,9 @@ import (
 	"goperfwatch/gpu/temp"
 	"github.com/gizak/termui/v3"
 	"github.com/gizak/termui/v3/widgets"
-	"os/exec"
 )
 
-func enableRawMode() (*exec.Cmd, *os.File) {
-	cmd := exec.Command("stty", "-icanon", "-echo") // Turn off canonical mode and echo
-	cmd.Stdin = os.Stdin
-	cmd.Stdout = os.Stdout
-	cmd.Run()
-	return cmd, os.Stdin
-}
-
-func disableRawMode(cmd *exec.Cmd) {
-	cmd = exec.Command("stty", "icanon", "echo") // Restore terminal settings
-	cmd.Stdin = os.Stdin
-	cmd.Run()
-}
-
 func main() {
-	// Enable raw mode for keyboard input
-	cmd, _ := enableRawMode()
-	defer disableRawMode(cmd)
-
 	// Initialize the termui library
 	if err := termui.Init(); err != nil {
 		fmt.Println("failed to initialize termui:", err)
@@ -163,7 +144,7 @@ func main() {
 
 	// Main loop to handle input
 	for {
-		// Poll for keyboard input
+		// Poll for input
 		if input, err := reader.ReadByte(); err == nil {
 			if input != 0 { // If a non-zero byte is received, exit
 				fmt.Println("Exiting...")
