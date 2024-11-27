@@ -8,6 +8,8 @@ GoPerfWatch is a CLI-based system monitoring utility written in Go for **Linux**
 - **Memory Monitoring**: Shows memory usage in GB and / total on a usage bar.
 - **Real-time Updates**: Data is refreshed at configurable intervals (500ms default).
 
+![image](https://github.com/user-attachments/assets/9e4b9658-94b4-4333-911c-673c17f50616)
+
 ## Dependencies
 
 Before attempting install GoPerfWatch, ensure that the following dependencies are present on your system:
