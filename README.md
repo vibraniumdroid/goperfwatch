@@ -98,3 +98,12 @@ OR
 ```bash
 go run main.go
 ```
+
+## To do
+
+* Implement GPU clock monitoring
+* Verify support for existing GPU features on Nvidia GPUs
+* Implement power consumption monitoring on supported hardware
+* Allow for arguments when executing to enable different display modes
+* Quit program only upon receiving specific input (rather than any)
+* Possibly phase out some use of lm-sensors where more universal implementations may be possible
