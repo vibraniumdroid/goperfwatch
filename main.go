@@ -40,18 +40,18 @@ func main() {
 	vramGauge.Title = "GPU VRAM Usage"
 
 	gpuTempWidget := widgets.NewParagraph()
-	gpuTempWidget.SetRect(0, 14, 50, 17) // Positioned below the VRAM gauge
+	gpuTempWidget.SetRect(0, 14, 50, 17)
 	gpuTempWidget.Title = "GPU Temperature"
 
 	// Set up input reader for keyboard events
 	reader := bufio.NewReader(os.Stdin)
 
-	// Polling interval (in milliseconds)
+	// Polling interval (edit before building to customize)
 	pollingInterval := 500 * time.Millisecond
 	ticker := time.NewTicker(pollingInterval)
 	defer ticker.Stop()
 
-	// Goroutine to handle updating the stats
+	// Goroutine to handle updating stats
 	go func() {
 		for {
 			select {
@@ -136,7 +136,7 @@ func main() {
 					widgetsToRender = append(widgetsToRender, gpuTempWidget)
 				}
 
-				// Render the widgets
+				// Render widgets
 				termui.Render(widgetsToRender...)
 			}
 		}
@@ -146,7 +146,7 @@ func main() {
 	for {
 		// Poll for input
 		if input, err := reader.ReadByte(); err == nil {
-			if input != 0 { // If a non-zero byte is received, exit
+			if input != 0 { // If non-zero byte is received exit
 				fmt.Println("Exiting...")
 				return
 			}
