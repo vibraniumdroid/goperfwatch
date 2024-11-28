@@ -10,7 +10,7 @@ import (
 	"os/exec"
 )
 
-// CPUSpeed struct to hold the average and max clock speeds
+// CPUSpeed struct to hold average and max clock speeds
 type CPUSpeed struct {
 	Avg int64
 	Max int64
@@ -43,8 +43,8 @@ func GetCPUClockSpeeds() (*CPUSpeed, error) {
 		}
 	}
 
-	avgFreq := totalFreq / int64(coreCount) / 1000	// in MHz
-	maxFreqMHz := maxFreq / 1000			// in MHz
+	avgFreq := totalFreq / int64(coreCount) / 1000	// MHz
+	maxFreqMHz := maxFreq / 1000			// MHz
 
 	return &CPUSpeed{
 		Avg: avgFreq,
@@ -79,9 +79,9 @@ func GetCPUTemperature() (string, error) {
 
 		// Check for AMD's Tccd lines or Intel's Core lines
 		if len(fields) > 1 && (strings.HasPrefix(fields[0], "Tccd") || strings.HasPrefix(fields[0], "Core")) {
-			// Extract the temperature value (second column, e.g., "+31.0°C")
+			// Extract temp value
 			tempStr := strings.TrimSuffix(fields[1], "°C")
-			tempStr = strings.TrimPrefix(tempStr, "+") // Remove '+' if present
+			tempStr = strings.TrimPrefix(tempStr, "+") // Remove "+" if found
 			temp, err := strconv.ParseFloat(tempStr, 64)
 			if err == nil {
 				temps = append(temps, temp)
