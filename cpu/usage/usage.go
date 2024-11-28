@@ -41,7 +41,7 @@ func readCPUTimes() (idle, total int64, err error) {
 	}
 
 	// Calculate total and idle times
-	idle = cpuTimes[3] // idle time is the fourth field in /proc/stat
+	idle = cpuTimes[3] // idle time is fourth field in /proc/stat
 	for _, time := range cpuTimes {
 		total += time
 	}
@@ -53,14 +53,14 @@ func readCPUTimes() (idle, total int64, err error) {
 func CalculateCPUUsage() (*CPUUsage, error) {
 	idle1, total1, err := readCPUTimes()
 	if err != nil {
-		return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
+		return &CPUUsage{Percent: -1}, nil // Return -1 if error
 	}
 
 	time.Sleep(500 * time.Millisecond)
 
 	idle2, total2, err := readCPUTimes()
 	if err != nil {
-		return &CPUUsage{Percent: -1}, nil // Return -1 if error occurs
+		return &CPUUsage{Percent: -1}, nil // Return -1 if error
 	}
 
 	idleDelta := idle2 - idle1
