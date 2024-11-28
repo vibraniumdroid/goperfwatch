@@ -32,7 +32,7 @@ For Arch
 sudo pacman -Syu go
 ```
 
-OR download the latest Linux release from [Go's official site](https://go.dev/dl/)
+OR download the latest Linux release of Go from the [official site](https://go.dev/dl/)
 
 ### lm-sensors
 
