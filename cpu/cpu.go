@@ -29,12 +29,12 @@ func GetCPUClockSpeeds() (*CPUSpeed, error) {
 	for _, path := range paths {
 		data, err := ioutil.ReadFile(path)
 		if err != nil {
-			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
+			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 if error
 		}
 
 		freqKHz, err := strconv.ParseInt(strings.TrimSpace(string(data)), 10, 64)
 		if err != nil {
-			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 on error
+			return &CPUSpeed{Avg: -1, Max: -1}, nil // Return -1 if error
 		}
 
 		totalFreq += freqKHz
