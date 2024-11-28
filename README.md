@@ -99,6 +99,12 @@ OR
 go run main.go
 ```
 
+## Usage
+
+Running the programming begins live-monitoring. So long as dependencies are satisfied further configuration is not required. To exit GoPerfWatch's interface once launched, simply enter any mouse or keyboard input. 
+
+Users looking to modify polling intervals should adjust the polling interval variables found in main and the usage package. 
+
 ## To do
 
 * Implement GPU clock monitoring
