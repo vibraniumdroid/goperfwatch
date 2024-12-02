@@ -25,7 +25,7 @@ func readCPUTimes() (idle, total int64, err error) {
 		return 0, 0, fmt.Errorf("failed to parse /proc/stat data")
 	}
 
-	fields := strings.Fields(lines[0]) // First line should be "cpu <values>"
+	fields := strings.Fields(lines[0]) // First line should read "cpu ..."
 	if len(fields) < 5 {
 		return 0, 0, fmt.Errorf("unexpected format in /proc/stat")
 	}
