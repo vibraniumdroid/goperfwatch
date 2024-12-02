@@ -47,7 +47,7 @@ func main() {
 	reader := bufio.NewReader(os.Stdin)
 
 	// Polling interval (edit before building to customize)
-	pollingInterval := 500 * time.Millisecond
+	pollingInterval := 250 * time.Millisecond
 	ticker := time.NewTicker(pollingInterval)
 	defer ticker.Stop()
 
