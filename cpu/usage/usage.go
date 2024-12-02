@@ -56,7 +56,7 @@ func CalculateCPUUsage() (*CPUUsage, error) {
 		return &CPUUsage{Percent: -1}, nil // Return -1 if error
 	}
 
-	time.Sleep(500 * time.Millisecond)
+	time.Sleep(250 * time.Millisecond) // wait before polling again 
 
 	idle2, total2, err := readCPUTimes()
 	if err != nil {
